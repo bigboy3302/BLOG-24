@@ -4,8 +4,16 @@ class Database{
 
     public function __construct()
     {
+        $config = [
+            "host" => "localhost",
+            "dbname" => "blog_ipb-22",
+            "user" => "root",
+            "password" => "",
+            "charset" => "utf8mb4"
+        ];
         
-        $connection_string = "mysql:host=localhost;dbname=BLOG ipb-22;user=root;pasword=;charset=utf8mb4";
+        $connection_string = "mysql:" . http_build_query($config, "", ";"); 
+        //$connection_string = "mysql:host=$config[host];dbname=$config[dbname];user=$config[user];password=$config[password];charset=$config[charset]";
     $this->pdo = new PDO($connection_string);
     $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     }
