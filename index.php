@@ -6,22 +6,21 @@ $config = require("Config.php");
 
 // Initialize query to fetch all posts by default
 $query = "SELECT * FROM posts";
+$params = [];
 
-// Check if id is set in $_GET and not empty, then update the query accordingly
 if (isset($_GET["id"]) && $_GET["id"] !== "") {
     $id = $_GET["id"];
-    // Sanitize the input to prevent SQL injection
     $id = intval($id);
-    // Update the query to fetch a specific post with the given id
-    $query = "SELECT * FROM posts WHERE id=$id";
+    $query .=  " WHERE id=:id";
+    $params = [":id" => $id];
 }
 
 // Initialize Database class
-$db = new Database();
+$db = new Database($config);
 
 // Execute the query and fetch posts
 $posts = $db
-    ->execute($query)
+    ->execute($query, $params)
     ->fetchAll();
 
 // Start HTML form
