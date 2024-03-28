@@ -10,6 +10,7 @@ ul {
 body {
   padding-top: 60px;
   padding-left: 20px;
+  background-color: rgb(100, 198, 228);
 }
 
 header {
@@ -40,4 +41,8 @@ label{
   top: 100%;
   color: red;
   font-size: 0.8em;
+}
+.delete-form{
+  display: inline-block;
+  
 }
